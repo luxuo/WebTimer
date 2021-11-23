@@ -20,7 +20,7 @@ ON VISIBILITY CHANGE :
 ON MESSAGE :
     if POPCALL
         if message.isAdding
-            add new timer to website                            TODO
+            add new timer to website
         else 
             check if activeSites != null
                 send POPCALLBACK
@@ -44,26 +44,27 @@ Object in content -> background messaging       PAGECALL
     activeTab : (bool),
     hostname : (string),
     timeElapsed : (int),
-    date : (Date)           NOT IN USE, TODO
+    date : (Date)
 }
 Object in content <- background callback        PAGECALLBACK
 {
     ok : (bool),
     timeElapsed : (int),
-    maxTime : (int),        NOT IN USE, TODO
-    date : (Date)           NOT IN USE, TODO
+    maxTime : (int)
 }
 
 Object in popup -> background messaging         POPCALL
 {
     isPopup : (bool),
-    isAddingTimer : (bool)  NOT IN USE, TODO
+    isAddingTimer : (bool),
+    hostname : (string),
+    maxTime : (int)
 }
 
 Object in popup <- background callback          POPCALLBACK
 {
     hostname : (string),
-    timerExists : (bool),   NOT IN USE, TODO
+    timerExists : (bool),
     timeElapsed : (int)
 }
 
@@ -71,6 +72,6 @@ Object stored in chrome.storage.local
 webtimer : {
     hostnames : (string) -> [],
     timesElapsed : (int) -> [],
-    maxTimes : (int) -> [], NOT IN USE, TODO
-    date : (Date)           NOT IN USE, TODO
+    maxTimes : (int) -> [],
+    date : (Date)
 }

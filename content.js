@@ -2,10 +2,12 @@ let interval;
 let timeElapsed = -1;
 
 const messenger = () => {
+    currentDate = new Date();
     chrome.runtime.sendMessage({
         activeTab: document.visibilityState == 'visible',
         hostname: location.hostname,
-        timeElapsed: timeElapsed
+        timeElapsed: timeElapsed,
+        date:currentDate
     }, (response) => {
         if (response.ok) {
             console.log('Opened tab, time elapsed is : ' + response.timeElapsed);
