@@ -13,8 +13,9 @@ const resultHandler = (hostname, result) => {
 };
 
 const dateChange = (past, current) => {
-    // return current.getDate() > past.getDate() || current.getFullYear() > past.getFullYear() || current.getMonth() > past.getMonth();
-    return false;
+    current = new Date(current);
+    past = new Date(past);
+    return current.getDate() > past.getDate() || current.getFullYear() > past.getFullYear() || current.getMonth() > past.getMonth();
 }
 
 const handleDailyTimer = (activeSites, pastDate, currentDate) => {
@@ -52,7 +53,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                     sendResponse({
                         hostname: currentSite,
                         timeElapsed: data.timeElapsed,
-                        timerExists: true
+                        timerExists: true,
+                        maxTime: data.maxTime
+                        //date : data.date                                                  TODO
                     });
                 else {
                     sendResponse({ hostname: currentSite, timerExists: false });

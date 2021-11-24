@@ -5,7 +5,8 @@ let hour = document.getElementById("hour");
 let minute = document.getElementById("minute");
 
 let submitParent = document.getElementById("submitparent");
-let time = document.getElementById("input");
+let timeInHours = document.getElementById("hourTimer");
+let timeInMinutes = document.getElementById("minuteTimer");
 let button = document.getElementById("submit");
 
 let hostname;
@@ -16,8 +17,8 @@ chrome.runtime.sendMessage({isPopup:true}, (response) => {
     if(response.timerExists){
         timerparent.style.display = "block";
         submitParent.style.display = "none";
-        minute.innerHTML = response.timeElapsed % 60;
-        hour.innerHTML = response.timeElapsed;
+        minute.innerHTML = (response.maxTime - response.timeElapsed) % 60;
+        hour.innerHTML = parseInt((response.maxTime - response.timeElapsed) / 60);
     } else{
         timerparent.style.display = "none";
         submitParent.style.display = "block";
@@ -29,10 +30,10 @@ button.addEventListener('click', () =>{
         isPopup : true,
         isAddingTimer: true,
         hostname: hostname,
-        maxTime : button.value
+        maxTime : parseInt(timeInHours.value) * 3600 + parseInt(timeInMinutes.value) * 60
     }, (response) => {
-        minute.innerHTML = response.timeElapsed % 60;
-        hour.innerHTML = (response.timeElapsed / 60);
+        minute.innerHTML = (response.maxTime - response.timeElapsed) % 60;
+        hour.innerHTML = parseInt((response.maxTime - response.timeElapsed) / 60);
         timerparent.style.display = "block";
         submitParent.style.display = "none";
     });

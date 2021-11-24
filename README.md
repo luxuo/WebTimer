@@ -72,7 +72,9 @@ Object in popup <- background callback
 {
     hostname : (string),
     timerExists : (bool),
-    timeElapsed : (int)
+    timeElapsed : (int),
+    maxTime : (int),
+    date : (Date)
 }
 ```
 ### Storage

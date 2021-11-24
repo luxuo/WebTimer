@@ -1,5 +1,5 @@
 let interval;
-let timeElapsed = -1;
+let timeElapsed = 0;
 
 const messenger = () => {
     currentDate = new Date();
@@ -10,16 +10,16 @@ const messenger = () => {
         date:currentDate
     }, (response) => {
         if (response.ok) {
-            console.log('Opened tab, time elapsed is : ' + response.timeElapsed);
             timeElapsed += response.timeElapsed;
             interval = setInterval(() => {
+                // check if time has exceeded TODO
+                // check if time needs to be reset
                 timeElapsed++;
                 console.log('TICK : ' + timeElapsed);
             }, 1000);
         } else {
-            console.log('Closed tab, time elapsed is :' + timeElapsed);
             clearInterval(interval);
-            timeElapsed = -1;
+            timeElapsed = 0;
         }
     })
 };

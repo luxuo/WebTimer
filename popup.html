@@ -16,9 +16,13 @@
 			padding: 0;
 			width: 240px;
 			text-align: center;
+			background-image: linear-gradient(blue, #4A77FF);
 		}
 		.modal-header{
 			align-items: center;
+		}
+		.modal-body{
+			color: snow;
 		}
 		.timer{
 			font-size: 42px;
@@ -26,13 +30,29 @@
 		.timer-header{
 			font-size: 25px;
 		}
-		#remove{
-			font-weight: 100;
-			font-size: 20px;
-			color:gray;
+		.time-input{
+			width: 30%;
+			background: rgba(0,0,0,0);
+			border: none;
+			font-size: 25px;
+			text-align: center;
 		}
-		#remove:hover{
-			color: black;
+		.button{
+			background: rgba(0,0,0,0);
+			color: snow;
+			border: none;
+		}
+		.button:hover{
+			color:royalblue;
+		}
+		.set-timer{
+			font-size: 25px;
+			border-bottom: snow solid 2px;
+			width: 80%;
+			margin: auto;
+		}
+		#domain{
+			color: snow;
 		}
 	</style>
 </head>
@@ -43,12 +63,15 @@
 	<div class="modal-body" id="timerparent">
 		<div class="timer-header">Time left</div>
 		<div class="timer"><span id="hour">00</span>:<span id="minute">00</span></div>
-		<div id="remove">remove</div>
 	</div>
 	<div class="modal-body" id="submitparent">
-		<input type="number" id="time">
-		<button id="submit">Click</button>
+		<div class="set-timer">
+			<input class="time-input" type="number" id="hourTimer"> :  
+			<input class="time-input" type="number" id="minuteTimer">
+		</div>
+		<br>
+		<button class="button" id="submit">Add</button>
 	</div>
 	<script src="popup.js"></script>
-</body>
+</body> 
 </html>
