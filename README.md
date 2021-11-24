@@ -1,12 +1,8 @@
-"# WebTimer" 
+# WebTimer
 
-HOW IT WORKS : 
-
-All websites with a valid hostname (not any chrome default/settings pages) are injected with content.js
-
---------------------------------------------------------------------
-        content.js
-ON VISIBILITY CHANGE :
+## content.js
+```
+ON VISIBILITY CHANGE:
     send PAGECALL
     recieve PAGECALLBACK
     if PAGECALLBACK.ok
@@ -15,12 +11,14 @@ ON VISIBILITY CHANGE :
             deactivate website                                  TODO
     else
         stop TIMER
---------------------------------------------------------------------
-        background.js
+```
+## background.js
+```
 ON MESSAGE :
     if POPCALL
         if message.isAdding
             add new timer to website
+            send POPCALLBACK
         else 
             check if activeSites != null
                 send POPCALLBACK
@@ -37,41 +35,53 @@ ON MESSAGE :
     else
         set activeSites -> null
         send PAGECALLBACK
-
---------------------------------------------------------------------
-Object in content -> background messaging       PAGECALL
+```
+---
+### PageCall
+Object in content -> background messaging
+```
 {
     activeTab : (bool),
     hostname : (string),
     timeElapsed : (int),
     date : (Date)
 }
-Object in content <- background callback        PAGECALLBACK
+```
+### PageCallBack
+Object in content <- background callback
+```
 {
     ok : (bool),
     timeElapsed : (int),
     maxTime : (int)
 }
-
-Object in popup -> background messaging         POPCALL
+```
+### PopCall
+Object in popup -> background messaging
+```
 {
     isPopup : (bool),
     isAddingTimer : (bool),
     hostname : (string),
     maxTime : (int)
 }
-
-Object in popup <- background callback          POPCALLBACK
+```
+### PopCallBack
+Object in popup <- background callback
+```
 {
     hostname : (string),
     timerExists : (bool),
     timeElapsed : (int)
 }
-
+```
+### Storage
 Object stored in chrome.storage.local
+```
 webtimer : {
     hostnames : (string) -> [],
     timesElapsed : (int) -> [],
     maxTimes : (int) -> [],
     date : (Date)
 }
+```
