@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>SiteTimer</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +17,7 @@
 			padding: 0;
 			width: 240px;
 			text-align: center;
-			background-image: linear-gradient(blue, #4A77FF);
+			background-image: linear-gradient(orange, red);
 		}
 		.modal-header{
 			align-items: center;
@@ -52,13 +53,14 @@
 			margin: auto;
 		}
 		#domain{
-			color: snow;
+			color: black;
 		}
 	</style>
 </head>
 <body>
 	<div class="modal-header">
 		<h1 id="domain">Unavailable</h1>
+		<div class="timer-header">⏱</div>
 	</div>
 	<div class="modal-body" id="timerparent">
 		<div class="timer-header">Time left</div>

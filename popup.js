@@ -19,13 +19,17 @@ chrome.runtime.sendMessage({isPopup:true}, (response) => {
         submitParent.style.display = "none";
         minute.innerHTML = (response.maxTime - response.timeElapsed) % 60;
         hour.innerHTML = parseInt((response.maxTime - response.timeElapsed) / 60);
-    } else{
+    } else if(response.hostname == 'Unavailable'){
+        timerparent.style.display = "none";
+        submitParent.style.display = "none";
+    }else{
         timerparent.style.display = "none";
         submitParent.style.display = "block";
     }
 });
 
 button.addEventListener('click', () =>{
+    return;
     chrome.runtime.sendMessage({
         isPopup : true,
         isAddingTimer: true,
